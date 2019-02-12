@@ -23,8 +23,15 @@ app.get("/s",function(req,res){
     var results = []
 
     $("article.p-article-list__item").each(function(i,element){
-        var link = $(element).children("a").attr("href")
-        results.push(link);
+        var link = $(element).children("a").attr("href");
+        var title = $(element).children("div.p-article-list__body").children("h3").children("a").text()
+        var summary = $(element).children("div.p-article-list__body").children("div.p-article__meta").children("p").text()
+        results.push(
+            {
+            title: title,
+            link: link,
+            summary: summary
+        });
     })
     console.log(results)
     })
