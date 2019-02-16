@@ -1,8 +1,9 @@
 var express = require('express');
-var axios = require('axios');
 var cheerio = require('cheerio');
+var axios = require('axios');
+var dataCard = require('../models/db')
 var path = require('path');
-var mongoose = require('./connection');
+
 var router = express.Router();
 
 router.get("/",function(req,res){
@@ -12,8 +13,11 @@ router.get("/",function(req,res){
 
 router.get("/s",function(req,res){
 
-    var results =[]
-    
+   
+
+var results =[]
+
+
     axios.get("https://otakumode.com/news/label/JoJo%27s%20Bizarre%20Adventure").then(function(response){  
     var $ = cheerio.load(response.data);
 
@@ -29,10 +33,11 @@ router.get("/s",function(req,res){
             src: srcImage,
             summary: summary
         });
-        console.log(results)
+        dataCard.insertOne({title: title, dataLink: link, imgLink: srcImage,summary: summary})
+        
     })
     })
-    res.render("scrape", {results})
+    res.render("scrape")
 })
 
 module.exports = router;
