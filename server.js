@@ -1,7 +1,13 @@
-
+var mongojs = require('mongojs');
 var express = require('express');
 var exphbs = require('express-handlebars');
 var router = require('./routes/index');
+var mongoose = require('mongoose');
+require('dotenv').config()
+
+/*process.env.MONGODB_URI ||*/
+var MONGODB_URI =  "mongodb://localhost/mongoHeadlines";
+mongoose.connect(MONGODB_URI,{ useNewUrlParser: true })
 
 var app = express();
 
