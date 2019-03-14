@@ -13,9 +13,8 @@ var orm = {
         })
     },
     createfromScrape: function(){
-        var obj = {
-            data: []
-        }
+        var obj = []
+            
     
             axios.get("https://otakumode.com/news/label/JoJo%27s%20Bizarre%20Adventure").then(function(response){  
         var $ = cheerio.load(response.data);
@@ -25,7 +24,7 @@ var orm = {
             var title = $(element).children("div.p-article-list__body").children("h3").children("a").text()
             var summary = $(element).children("div.p-article-list__body").children("div.p-article__meta").children("p").text()
             var srcImage = $(element).children("div.p-article-list__thumb").children("div.p-article__figure-inner").find("img").attr("src")
-            obj.data.push(
+            obj.push(
                 {
                 title: title,
                 link: link,

@@ -14,7 +14,7 @@ router.get("/",function(req,res){
 
 router.get("/s",function(req,res){
     var data = orm.createfromScrape()
-    res.render("scrape", {data})
+    res.render("scrape", {datahb : data})
 })
 
 module.exports = router;
